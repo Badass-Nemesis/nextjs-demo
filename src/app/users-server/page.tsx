@@ -7,7 +7,9 @@ interface UserInterface {
 }
 
 export default async function UsersServer() {
-    const res = await fetch("https://jsonplaceholder.typicode.com/users");
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    // throw new Error();
+    const res = await fetch("https://jsonplaceholder.typicode.com/users123");
     const users = await res.json();
 
     return (
