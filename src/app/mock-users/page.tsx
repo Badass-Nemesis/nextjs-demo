@@ -1,3 +1,5 @@
+import { revalidatePath } from "next/cache";
+
 interface MockUserInterface {
     id: number;
     name: string;
@@ -20,13 +22,14 @@ export default async function MockUsers() {
         })
 
         const newUser = await res.json();
+        revalidatePath("/mock-users");
         console.log(newUser);
     }
 
     return (
         <div className="py-10">
             <form action={addUser} className="mb-4">
-                <input type="text" name="name" required className="border p-2 mr-2 rounded" />
+                <input type="text" name="name" required className="border p-2 mr-2 rounded text-black" />
                 <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">Add User</button>
             </form>
             <div className="grid grid-cols-4 gap-4 py-10">
